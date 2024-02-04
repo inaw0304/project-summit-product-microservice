@@ -3,10 +3,7 @@ package com.projectsummit.productmicroservice.controller;
 
 import com.projectsummit.productmicroservice.entity.Product;
 import jakarta.annotation.PostConstruct;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +31,13 @@ public class ProductRestController {
     }
 
     @GetMapping("/products/{productId}")
-    public Product getProduct(@PathVariable Integer productId){
+    public Product getProduct(@PathVariable int productId){
+
+        if(productId>=this.products.size() || productId < 0){
+            throw new ProductNotFoundException("Product not found - "+ productId);
+        }
+
         return this.products.get(productId);
     }
-
 
 }
