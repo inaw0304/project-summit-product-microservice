@@ -2,10 +2,10 @@ package com.projectsummit.productmicroservice.controller;
 
 
 import com.projectsummit.productmicroservice.entity.Product;
-import jakarta.annotation.PostConstruct;
+import com.projectsummit.productmicroservice.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -13,31 +13,26 @@ import java.util.List;
 @RequestMapping("/api")
 public class ProductRestController {
 
-    private List<Product> products;
+    private ProductService productService;
 
-    @PostConstruct
-    public void loadProducts(){
-        this.products = new ArrayList<>();
-        products.add(new Product("Iphone14ProMax",1000,"Electronics","This is an IPhone 14 Pro Max by Apple","www.url_iphone14promax.com"));
-        products.add(new Product("Apple",2,"Fruits and Vegetables","Red apples by Sysco","www.url_apple.com"));
-        products.add(new Product("Bed",100,"Furnitures","This is one of the best beds in the world!","www.url_bed.com"));
-        products.add(new Product("ToothPaste",34,"Home Essentials","Buy this and get white teeth","www.url_toothpaste.com"));
-        products.add(new Product("Paricatamol",12,"Medicine","This is medicine","www.url_medicine.com"));
+    @Autowired
+    public ProductRestController(ProductService productService){
+        this.productService = productService;
     }
 
     @GetMapping("/products")
     public List<Product> getProducts(){
-        return this.products;
+        return this.productService.getProducts();
     }
 
     @GetMapping("/products/{productId}")
     public Product getProduct(@PathVariable int productId){
 
-        if(productId>=this.products.size() || productId < 0){
+        if(productId>=this.productService.getProducts().size() || productId < 0){
             throw new ProductNotFoundException("Product not found - "+ productId);
         }
 
-        return this.products.get(productId);
+        return this.productService.getProducts().get(productId);
     }
 
 }

@@ -1,9 +1,25 @@
 package com.projectsummit.productmicroservice.entity;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table
 public class Product {
 
+    @Id
+    @SequenceGenerator(
+            name="product_sequence",
+            sequenceName = "product_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "product_sequence"
+    )
+    private Long id;
+
     private String productName;
-    private Integer productPrice;
+    private Float productPrice;
     private String procutCategory;
 
     private String productDescription;
@@ -13,7 +29,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String productName, Integer productPrice, String procutCategory, String productDescription, String productImageUrl) {
+    public Product(String productName, Float productPrice, String procutCategory, String productDescription, String productImageUrl) {
         this.productName = productName;
         this.productPrice = productPrice;
         this.procutCategory = procutCategory;
@@ -21,11 +37,19 @@ public class Product {
         this.productImageUrl = productImageUrl;
     }
 
-    public Product(String productName, Integer productPrice, String procutCategory, String productDescription) {
+    public Product(String productName, Float productPrice, String procutCategory, String productDescription) {
         this.productName = productName;
         this.productPrice = productPrice;
         this.procutCategory = procutCategory;
         this.productDescription = productDescription;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getProductName() {
@@ -36,11 +60,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public Integer getProductPrice() {
+    public Float getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(Integer productPrice) {
+    public void setProductPrice(Float productPrice) {
         this.productPrice = productPrice;
     }
 
