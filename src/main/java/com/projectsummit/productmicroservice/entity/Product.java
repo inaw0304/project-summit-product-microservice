@@ -1,6 +1,9 @@
 package com.projectsummit.productmicroservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 
 @Entity
 @Table
@@ -20,28 +23,67 @@ public class Product {
 
     private String productName;
     private Float productPrice;
-    private String procutCategory;
+    private String productCategory;
 
     private String productDescription;
 
     private String productImageUrl;
 
+    private Long productOwnerId;
+
+    private boolean isAdminApproved;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate createdDate;
+
     public Product() {
     }
 
-    public Product(String productName, Float productPrice, String procutCategory, String productDescription, String productImageUrl) {
+    // all parameter constructor
+    public Product(Long id, String productName, Float productPrice, String productCategory, String productDescription, String productImageUrl, Long productOwnerId, boolean isAdminApproved) {
+        this.id = id;
         this.productName = productName;
         this.productPrice = productPrice;
-        this.procutCategory = procutCategory;
+        this.productCategory = productCategory;
         this.productDescription = productDescription;
         this.productImageUrl = productImageUrl;
+        this.productOwnerId = productOwnerId;
+        this.isAdminApproved = isAdminApproved;
+        this.createdDate = LocalDate.now();
     }
 
-    public Product(String productName, Float productPrice, String procutCategory, String productDescription) {
+    // all parameter constructor without id
+    public Product(String productName, Float productPrice, String productCategory, String productDescription, String productImageUrl, Long productOwnerId, boolean isAdminApproved, LocalDate createdDate) {
         this.productName = productName;
         this.productPrice = productPrice;
-        this.procutCategory = procutCategory;
+        this.productCategory = productCategory;
         this.productDescription = productDescription;
+        this.productImageUrl = productImageUrl;
+        this.productOwnerId = productOwnerId;
+        this.isAdminApproved = isAdminApproved;
+        this.createdDate = createdDate;
+    }
+
+    // all parameter constructor without id and isAdminApproved
+    public Product(String productName, Float productPrice, String productCategory, String productDescription, String productImageUrl, Long productOwnerId, LocalDate createdDate) {
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productCategory = productCategory;
+        this.productDescription = productDescription;
+        this.productImageUrl = productImageUrl;
+        this.productOwnerId = productOwnerId;
+        this.createdDate = createdDate;
+    }
+
+    // all parameter constructor without id and createdDate
+    public Product(String productName, Float productPrice, String productCategory, String productDescription, String productImageUrl, Long productOwnerId, boolean isAdminApproved) {
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productCategory = productCategory;
+        this.productDescription = productDescription;
+        this.productImageUrl = productImageUrl;
+        this.productOwnerId = productOwnerId;
+        this.isAdminApproved = isAdminApproved;
     }
 
     public Long getId() {
@@ -68,12 +110,12 @@ public class Product {
         this.productPrice = productPrice;
     }
 
-    public String getProcutCategory() {
-        return procutCategory;
+    public String getProductCategory() {
+        return productCategory;
     }
 
-    public void setProcutCategory(String procutCategory) {
-        this.procutCategory = procutCategory;
+    public void setProductCategory(String productCategory) {
+        this.productCategory = productCategory;
     }
 
     public String getProductDescription() {
@@ -90,5 +132,44 @@ public class Product {
 
     public void setProductImageUrl(String productImageUrl) {
         this.productImageUrl = productImageUrl;
+    }
+
+    public LocalDate getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDate createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Long getProductOwnerId() {
+        return productOwnerId;
+    }
+
+    public void setProductOwnerId(Long productOwnerId) {
+        this.productOwnerId = productOwnerId;
+    }
+
+    public boolean isAdminApproved() {
+        return isAdminApproved;
+    }
+
+    public void setAdminApproved(boolean adminApproved) {
+        isAdminApproved = adminApproved;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", productName='" + productName + '\'' +
+                ", productPrice=" + productPrice +
+                ", procutCategory='" + productCategory + '\'' +
+                ", productDescription='" + productDescription + '\'' +
+                ", productImageUrl='" + productImageUrl + '\'' +
+                ", productOwnerId=" + productOwnerId +
+                ", isAdminApproved=" + isAdminApproved +
+                ", createdDate=" + createdDate +
+                '}';
     }
 }
