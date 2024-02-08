@@ -1,4 +1,4 @@
-package com.projectsummit.productmicroservice.controller;
+package com.projectsummit.productmicroservice.dto;
 
 public class ProductErrorResponse {
 

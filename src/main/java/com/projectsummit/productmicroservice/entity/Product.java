@@ -10,82 +10,51 @@ import java.time.LocalDate;
 public class Product {
 
     @Id
-    @SequenceGenerator(
-            name="product_sequence",
-            sequenceName = "product_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "product_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String productName;
-    private Float productPrice;
-    private String productCategory;
-
-    private String productDescription;
-
-    private String productImageUrl;
-
+    private String name;
+    private Float price;
+    private String category;
+    private String description;
+    private String imageUrl;
     private Long productOwnerId;
-
-    private boolean isAdminApproved;
+    private boolean adminApproval;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate createdDate;
 
+    // constructors
+
+    // default constructor
     public Product() {
     }
 
     // all parameter constructor
-    public Product(Long id, String productName, Float productPrice, String productCategory, String productDescription, String productImageUrl, Long productOwnerId, boolean isAdminApproved) {
+    public Product(Long id, String name, Float price, String category, String description, String imageUrl, Long productOwnerId, boolean isAdminApproved, LocalDate createdDate) {
         this.id = id;
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.productCategory = productCategory;
-        this.productDescription = productDescription;
-        this.productImageUrl = productImageUrl;
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.description = description;
+        this.imageUrl = imageUrl;
         this.productOwnerId = productOwnerId;
-        this.isAdminApproved = isAdminApproved;
-        this.createdDate = LocalDate.now();
-    }
-
-    // all parameter constructor without id
-    public Product(String productName, Float productPrice, String productCategory, String productDescription, String productImageUrl, Long productOwnerId, boolean isAdminApproved, LocalDate createdDate) {
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.productCategory = productCategory;
-        this.productDescription = productDescription;
-        this.productImageUrl = productImageUrl;
-        this.productOwnerId = productOwnerId;
-        this.isAdminApproved = isAdminApproved;
+        this.adminApproval = isAdminApproved;
         this.createdDate = createdDate;
     }
 
-    // all parameter constructor without id and isAdminApproved
-    public Product(String productName, Float productPrice, String productCategory, String productDescription, String productImageUrl, Long productOwnerId, LocalDate createdDate) {
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.productCategory = productCategory;
-        this.productDescription = productDescription;
-        this.productImageUrl = productImageUrl;
+    // all parameters(without id) constructor
+    public Product(String name, Float price, String category, String description, String imageUrl, Long productOwnerId, boolean isAdminApproved, LocalDate createdDate) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.description = description;
+        this.imageUrl = imageUrl;
         this.productOwnerId = productOwnerId;
+        this.adminApproval = isAdminApproved;
         this.createdDate = createdDate;
     }
 
-    // all parameter constructor without id and createdDate
-    public Product(String productName, Float productPrice, String productCategory, String productDescription, String productImageUrl, Long productOwnerId, boolean isAdminApproved) {
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.productCategory = productCategory;
-        this.productDescription = productDescription;
-        this.productImageUrl = productImageUrl;
-        this.productOwnerId = productOwnerId;
-        this.isAdminApproved = isAdminApproved;
-    }
-
+    // getters and setters
     public Long getId() {
         return id;
     }
@@ -94,52 +63,44 @@ public class Product {
         this.id = id;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Float getProductPrice() {
-        return productPrice;
+    public Float getPrice() {
+        return price;
     }
 
-    public void setProductPrice(Float productPrice) {
-        this.productPrice = productPrice;
+    public void setPrice(Float price) {
+        this.price = price;
     }
 
-    public String getProductCategory() {
-        return productCategory;
+    public String getCategory() {
+        return category;
     }
 
-    public void setProductCategory(String productCategory) {
-        this.productCategory = productCategory;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public String getProductDescription() {
-        return productDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getProductImageUrl() {
-        return productImageUrl;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setProductImageUrl(String productImageUrl) {
-        this.productImageUrl = productImageUrl;
-    }
-
-    public LocalDate getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(LocalDate createdDate) {
-        this.createdDate = createdDate;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public Long getProductOwnerId() {
@@ -150,25 +111,34 @@ public class Product {
         this.productOwnerId = productOwnerId;
     }
 
-    public boolean isAdminApproved() {
-        return isAdminApproved;
+    public boolean isAdminApproval() {
+        return adminApproval;
     }
 
-    public void setAdminApproved(boolean adminApproved) {
-        isAdminApproved = adminApproved;
+    public void setAdminApproval(boolean adminApproval) {
+        this.adminApproval = adminApproval;
     }
 
+    public LocalDate getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDate createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    // toString Method
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
-                ", productName='" + productName + '\'' +
-                ", productPrice=" + productPrice +
-                ", procutCategory='" + productCategory + '\'' +
-                ", productDescription='" + productDescription + '\'' +
-                ", productImageUrl='" + productImageUrl + '\'' +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", category='" + category + '\'' +
+                ", description='" + description + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 ", productOwnerId=" + productOwnerId +
-                ", isAdminApproved=" + isAdminApproved +
+                ", adminApproval=" + adminApproval +
                 ", createdDate=" + createdDate +
                 '}';
     }

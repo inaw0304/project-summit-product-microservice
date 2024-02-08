@@ -1,5 +1,6 @@
 package com.projectsummit.productmicroservice.controller;
 
+import com.projectsummit.productmicroservice.dto.ProductErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
