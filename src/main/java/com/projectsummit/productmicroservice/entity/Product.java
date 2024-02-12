@@ -16,7 +16,6 @@ public class Product {
     private Float price;
     private String category;
     private String description;
-    private String imageUrl;
     private Long productOwnerId;
     private boolean adminApproval;
 
@@ -30,25 +29,23 @@ public class Product {
     }
 
     // all parameter constructor
-    public Product(Long id, String name, Float price, String category, String description, String imageUrl, Long productOwnerId, boolean isAdminApproved, LocalDate createdDate) {
+    public Product(Long id, String name, Float price, String category, String description, Long productOwnerId, boolean isAdminApproved, LocalDate createdDate) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.category = category;
         this.description = description;
-        this.imageUrl = imageUrl;
         this.productOwnerId = productOwnerId;
         this.adminApproval = isAdminApproved;
         this.createdDate = createdDate;
     }
 
     // all parameters(without id) constructor
-    public Product(String name, Float price, String category, String description, String imageUrl, Long productOwnerId, boolean isAdminApproved, LocalDate createdDate) {
+    public Product(String name, Float price, String category, String description, Long productOwnerId, boolean isAdminApproved, LocalDate createdDate) {
         this.name = name;
         this.price = price;
         this.category = category;
         this.description = description;
-        this.imageUrl = imageUrl;
         this.productOwnerId = productOwnerId;
         this.adminApproval = isAdminApproved;
         this.createdDate = createdDate;
@@ -95,14 +92,6 @@ public class Product {
         this.description = description;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
     public Long getProductOwnerId() {
         return productOwnerId;
     }
@@ -136,7 +125,6 @@ public class Product {
                 ", price=" + price +
                 ", category='" + category + '\'' +
                 ", description='" + description + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
                 ", productOwnerId=" + productOwnerId +
                 ", adminApproval=" + adminApproval +
                 ", createdDate=" + createdDate +

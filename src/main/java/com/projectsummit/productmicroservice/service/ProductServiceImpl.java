@@ -75,10 +75,6 @@ public class ProductServiceImpl implements ProductService{
                 foundProduct.get().setDescription(product.getDescription());
             }
 
-            if(product.getImageUrl()!=null){
-                foundProduct.get().setImageUrl(product.getImageUrl());
-            }
-
             if(product.getProductOwnerId()!=null){
                 foundProduct.get().setProductOwnerId(product.getProductOwnerId());
             }

@@ -1,16 +1,16 @@
 package com.projectsummit.productmicroservice.dto;
 
-public class ProductErrorResponse {
+public class ErrorResponse {
 
     private int status;
     private String message;
 
     private long timeStamp;
 
-    public ProductErrorResponse() {
+    public ErrorResponse() {
     }
 
-    public ProductErrorResponse(int status, String message, long timeStamp) {
+    public ErrorResponse(int status, String message, long timeStamp) {
         this.status = status;
         this.message = message;
         this.timeStamp = timeStamp;
